@@ -1,8 +1,5 @@
-This package is a fork of [MwakalingaJohn/LaraSettings](https://github.com/MwakalingaJohn/LaraSettings), that is not maintained anymore.
-I fixed some issues, and update dependencies for use with [Laravel](https://laravel.com) 9.x
-
-- For Laravel 8.x use branch v1.x-dev
-- For Laravel 9.x use branch master
+This package is a fork of [ricventu/Laraconfig](https://github.com/ricventu/Laraconfig)
+I fixed some issues, and update dependencies for use with [Laravel](https://laravel.com) 10.x
 
 To install this repository, add this to your composer.json, change `master` to the branch you want:
 ```
