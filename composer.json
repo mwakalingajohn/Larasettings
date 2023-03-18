@@ -1,13 +1,13 @@
 {
-  "name": "darkghosthunter/laraconfig",
-  "description": "Per-user settings repository system for Laravel",
+  "name": "mwakalingajohn/larasettings",
+  "description": "Per-user settings repository system for Laravel forked from ricventu/laraconfig",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "license": "MIT",
   "authors": [
     {
-      "name": "Italo Baeza C.",
-      "email": "darkghosthunter@gmail.com"
+      "name": "John Mwakalinga",
+      "email": "mwakalingajohn@gmail.com"
     }
   ],
   "require": {
@@ -31,16 +31,16 @@
   },
   "autoload": {
     "psr-4": {
-      "DarkGhostHunter\\Laraconfig\\": "src"
+      "MwakalingaJohn\\LaraSettings\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "DarkGhostHunter\\Laraconfig\\LaraconfigServiceProvider"
+        "MwakalingaJohn\\LaraSettings\\LaraconfigServiceProvider"
       ],
       "aliases": {
-        "Setting": "DarkGhostHunter\\Laraconfig\\Facades\\Setting"
+        "Setting": "MwakalingaJohn\\LaraSettings\\Facades\\Setting"
       }
     }
   },
