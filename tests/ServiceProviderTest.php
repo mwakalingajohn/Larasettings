@@ -3,7 +3,7 @@
 namespace Tests;
 
 use MwakalingaJohn\LaraSettings\Facades\Setting;
-use MwakalingaJohn\LaraSettings\LarasettingsServiceProvider;
+use MwakalingaJohn\LaraSettings\LaraSettingsServiceProvider;
 use MwakalingaJohn\LaraSettings\Registrar\SettingRegistrar;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
@@ -23,7 +23,7 @@ class ServiceProviderTest extends BaseTestCase
 
     public function test_registers_package(): void
     {
-        static::assertArrayHasKey(LarasettingsServiceProvider::class, $this->app->getLoadedProviders());
+        static::assertArrayHasKey(LaraSettingsServiceProvider::class, $this->app->getLoadedProviders());
     }
 
     public function test_facades(): void
@@ -41,7 +41,7 @@ class ServiceProviderTest extends BaseTestCase
         $this->artisan(
             'vendor:publish',
             [
-                '--provider' => 'MwakalingaJohn\LaraSettings\LarasettingsServiceProvider',
+                '--provider' => 'MwakalingaJohn\LaraSettings\LaraSettingsServiceProvider',
                 '--tag' => 'config',
             ]
         )->execute();
@@ -56,7 +56,7 @@ class ServiceProviderTest extends BaseTestCase
         $this->artisan(
             'vendor:publish',
             [
-                '--provider' => 'MwakalingaJohn\LaraSettings\LarasettingsServiceProvider',
+                '--provider' => 'MwakalingaJohn\LaraSettings\LaraSettingsServiceProvider',
                 '--tag' => 'migrations',
             ]
         )->run();

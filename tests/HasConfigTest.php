@@ -441,7 +441,7 @@ class HasConfigTest extends BaseTestCase
 
     public function test_can_invalidate_cache_if_enabled(): void
     {
-        config()->set('laraconfig.cache.enable', true);
+        config()->set('larasettings.cache.enable', true);
 
         $cache = $this->mock(Repository::class);
 
@@ -451,14 +451,14 @@ class HasConfigTest extends BaseTestCase
             ->andReturn($cache);
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->andReturnNull();
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1');
+            ->with('larasettings|'.DummyModel::class.'|1');
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1:time');
+            ->with('larasettings|'.DummyModel::class.'|1:time');
 
         $cache->shouldNotReceive('setMultiple');
 
@@ -478,7 +478,7 @@ class HasConfigTest extends BaseTestCase
 
     public function test_should_regenerate_cache_if_cache_enabled(): void
     {
-        config()->set('laraconfig.cache.enable', true);
+        config()->set('larasettings.cache.enable', true);
 
         $cache = $this->mock(Repository::class);
 
@@ -488,26 +488,26 @@ class HasConfigTest extends BaseTestCase
             ->andReturn($cache);
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1');
+            ->with('larasettings|'.DummyModel::class.'|1');
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->andReturn(new SettingsCollection([(new Setting())->forceFill([
                 'name' => 'foo',
             ])]));
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->andReturn(now()->subMinute());
 
         $cache->shouldReceive('set')
-            ->with('laraconfig|'.DummyModel::class.'|1', Mockery::type(Collection::class), 60 * 60 * 3)
+            ->with('larasettings|'.DummyModel::class.'|1', Mockery::type(Collection::class), 60 * 60 * 3)
             ->andReturns();
 
         $cache->shouldReceive('setMultiple')
             ->withArgs(function ($array, $ttl) {
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1', $array);
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1:time', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1:time', $array);
                 static::assertEquals(60 * 60 * 3, $ttl);
                 return true;
             })
@@ -522,7 +522,7 @@ class HasConfigTest extends BaseTestCase
 
     public function test_should_not_regenerate_cache_if_is_not_fresher(): void
     {
-        config()->set('laraconfig.cache.enable', true);
+        config()->set('larasettings.cache.enable', true);
 
         $cache = $this->mock(Repository::class);
 
@@ -532,16 +532,16 @@ class HasConfigTest extends BaseTestCase
             ->andReturn($cache);
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1');
+            ->with('larasettings|'.DummyModel::class.'|1');
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->andReturn(new SettingsCollection([(new Setting())->forceFill([
                 'name' => 'foo',
             ])]));
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->andReturn(now()->addMinute());
 
         $cache->shouldNotReceive('set');
@@ -566,7 +566,7 @@ class HasConfigTest extends BaseTestCase
 
     public function test_invalidates_cache_only_once_on_set_if_cache_enabled(): void
     {
-        config()->set('laraconfig.cache.enable', true);
+        config()->set('larasettings.cache.enable', true);
 
         $cache = $this->mock(Repository::class);
 
@@ -577,27 +577,27 @@ class HasConfigTest extends BaseTestCase
             ->andReturn($cache);
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->once()
             ->andReturnNull();
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->once();
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->once();
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->once()
             ->andReturnNull();
 
         $cache->shouldReceive('setMultiple')
             ->withArgs(function ($array, $ttl) {
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1', $array);
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1:time', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1:time', $array);
                 static::assertEquals(60 * 60 * 3, $ttl);
                 return true;
             })
@@ -619,7 +619,7 @@ class HasConfigTest extends BaseTestCase
 
     public function test_invalidates_cache_only_once_on_disable_if_cache_enabled(): void
     {
-        config()->set('laraconfig.cache.enable', true);
+        config()->set('larasettings.cache.enable', true);
 
         $cache = $this->mock(Repository::class);
 
@@ -629,25 +629,25 @@ class HasConfigTest extends BaseTestCase
             ->andReturn($cache);
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->once();
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1')
+            ->with('larasettings|'.DummyModel::class.'|1')
             ->once();
 
         $cache->shouldReceive('forget')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->once();
 
         $cache->shouldReceive('get')
-            ->with('laraconfig|'.DummyModel::class.'|1:time')
+            ->with('larasettings|'.DummyModel::class.'|1:time')
             ->once();
 
         $cache->shouldReceive('setMultiple')
             ->withArgs(function ($array, $ttl) {
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1', $array);
-                static::assertArrayHasKey('laraconfig|'.DummyModel::class.'|1:time', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1', $array);
+                static::assertArrayHasKey('larasettings|'.DummyModel::class.'|1:time', $array);
                 static::assertEquals(60 * 60 * 3, $ttl);
                 return true;
             })
@@ -669,10 +669,10 @@ class HasConfigTest extends BaseTestCase
 
     public function test_saves_and_retrieves_settings_from_cache(): void
     {
-        Cache::store('file')->forget('laraconfig|'.DummyModel::class.'|1');
+        Cache::store('file')->forget('larasettings|'.DummyModel::class.'|1');
 
-        config()->set('laraconfig.cache.enable', true);
-        config()->set('laraconfig.cache.store', 'file');
+        config()->set('larasettings.cache.enable', true);
+        config()->set('larasettings.cache.store', 'file');
 
         $user = DummyModel::find(1);
 
@@ -682,11 +682,11 @@ class HasConfigTest extends BaseTestCase
 
         $user->settings->regenerate(true);
 
-        $settings = Cache::store('file')->get('laraconfig|'.DummyModel::class.'|1');
+        $settings = Cache::store('file')->get('larasettings|'.DummyModel::class.'|1');
 
         $setting = $settings->firstWhere('name', 'foo');
 
-        static::assertNull($setting->laraconfig);
+        static::assertNull($setting->larasettings);
         static::assertSame('quz', $setting->value);
     }
 
@@ -789,8 +789,8 @@ class HasConfigTest extends BaseTestCase
 
     public function test_cache_avoids_data_races(): void
     {
-        config()->set('laraconfig.cache.enable', true);
-        config()->set('laraconfig.cache.automatic', false);
+        config()->set('larasettings.cache.enable', true);
+        config()->set('larasettings.cache.automatic', false);
 
         $user_alpha = DummyModel::find(1);
 
@@ -804,7 +804,7 @@ class HasConfigTest extends BaseTestCase
 
         $user_alpha->settings->regenerate();
 
-        static::assertEquals('qux', cache()->get('laraconfig|'.DummyModel::class.'|1')->get('foo')->value);
+        static::assertEquals('qux', cache()->get('larasettings|'.DummyModel::class.'|1')->get('foo')->value);
     }
 
     public function test_checks_settings_has_key(): void

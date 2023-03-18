@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use MwakalingaJohn\LaraSettings\LaraconfigServiceProvider;
+use MwakalingaJohn\LaraSettings\LaraSettingsServiceProvider;
 use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 trait RegistersPackage
@@ -17,7 +17,7 @@ trait RegistersPackage
     protected function getPackageProviders($app): array
     {
         return [
-            LaraconfigServiceProvider::class,
+            LaraSettingsServiceProvider::class,
         ];
     }
 
