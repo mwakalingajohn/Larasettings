@@ -1,6 +1,6 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig;
+namespace MwakalingaJohn\LaraSettings;
 
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Contracts\Cache\Repository;
@@ -15,7 +15,7 @@ class SettingsCache implements Serializable
     /**
      * The collection of settings to persist.
      *
-     * @var \DarkGhostHunter\Laraconfig\SettingsCollection|null
+     * @var \MwakalingaJohn\LaraSettings\SettingsCollection|null
      */
     protected ?SettingsCollection $settings = null;
 
@@ -45,9 +45,9 @@ class SettingsCache implements Serializable
     /**
      * Set the settings collection to persist.
      *
-     * @param  \DarkGhostHunter\Laraconfig\SettingsCollection  $settings
+     * @param  \MwakalingaJohn\LaraSettings\SettingsCollection  $settings
      *
-     * @return \DarkGhostHunter\Laraconfig\SettingsCache
+     * @return \MwakalingaJohn\LaraSettings\SettingsCache
      */
     public function setSettings(SettingsCollection $settings): static
     {
@@ -170,14 +170,14 @@ class SettingsCache implements Serializable
     public static function make(Config $config, Factory $factory, Model $model): static
     {
         return new static(
-            $factory->store($config->get('laraconfig.cache.store')),
+            $factory->store($config->get('larasettings.cache.store')),
             MorphManySettings::generateKeyForModel(
-                $config->get('laraconfig.cache.prefix', 'laraconfig'),
+                $config->get('larasettings.cache.prefix', 'larasettings'),
                 $model->getMorphClass(),
                 $model->getKey()
             ),
-            $config->get('laraconfig.cache.ttl', 60 * 60 * 3),
-            $config->get('laraconfig.cache.automatic', true),
+            $config->get('larasettings.cache.ttl', 60 * 60 * 3),
+            $config->get('larasettings.cache.automatic', true),
         );
     }
 }

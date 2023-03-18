@@ -1,6 +1,6 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator;
+namespace MwakalingaJohn\LaraSettings\Migrator;
 
 use Illuminate\Pipeline\Pipeline;
 

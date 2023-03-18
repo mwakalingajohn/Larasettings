@@ -1,10 +1,10 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
 
 /**
  * @internal
@@ -14,7 +14,7 @@ class LoadMetadata
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed

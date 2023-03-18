@@ -1,9 +1,9 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
 use Illuminate\Console\OutputStyle;
 use RuntimeException;
 
@@ -16,7 +16,7 @@ class EnsureSomethingToMigrate
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed

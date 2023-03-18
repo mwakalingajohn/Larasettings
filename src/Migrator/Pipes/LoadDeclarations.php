@@ -1,10 +1,10 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\Registrar\SettingRegistrar;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Registrar\SettingRegistrar;
 
 /**
  * @internal
@@ -14,7 +14,7 @@ class LoadDeclarations
     /**
      * LoadDeclarations constructor.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\SettingRegistrar  $registrar
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\SettingRegistrar  $registrar
      */
     public function __construct(protected SettingRegistrar $registrar)
     {
@@ -23,7 +23,7 @@ class LoadDeclarations
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed

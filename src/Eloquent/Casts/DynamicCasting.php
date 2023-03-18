@@ -1,9 +1,9 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Eloquent\Casts;
+namespace MwakalingaJohn\LaraSettings\Eloquent\Casts;
 
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
 use DateTimeInterface;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Arr;
@@ -18,7 +18,7 @@ class DynamicCasting implements CastsAttributes
     /**
      * Transform the attribute from the underlying model values.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Setting|\DarkGhostHunter\Laraconfig\Eloquent\Metadata  $model
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Setting|\MwakalingaJohn\LaraSettings\Eloquent\Metadata  $model
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes
@@ -54,7 +54,7 @@ class DynamicCasting implements CastsAttributes
     /**
      * Transform the attribute to its underlying model values.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Setting|\DarkGhostHunter\Laraconfig\Eloquent\Metadata  $model
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Setting|\MwakalingaJohn\LaraSettings\Eloquent\Metadata  $model
      * @param  string  $key
      * @param  mixed  $value
      * @param  array  $attributes

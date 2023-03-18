@@ -1,4 +1,4 @@
-This package is a fork of [DarkGhostHunter/Laraconfig](https://github.com/DarkGhostHunter/Laraconfig), that is not maintained anymore.
+This package is a fork of [MwakalingaJohn/LaraSettings](https://github.com/MwakalingaJohn/LaraSettings), that is not maintained anymore.
 I fixed some issues, and update dependencies for use with [Laravel](https://laravel.com) 9.x
 
 - For Laravel 8.x use branch v1.x-dev
@@ -9,11 +9,11 @@ To install this repository, add this to your composer.json, change `master` to t
    "repositories":[
         {
             "type": "vcs",
-            "url": "https://github.com/ricventu/Laraconfig.git"
+            "url": "https://github.com/ricventu/LaraSettings.git"
         }
    ],
    "require": {
-        "darkghosthunter/laraconfig": "dev-master",
+        "mwakalingajohn/larasettings": "dev-master",
    }
 ```
 
@@ -21,9 +21,9 @@ To install this repository, add this to your composer.json, change `master` to t
 
 ![Xavier von Erlach - Unsplash #ooR1jY2yFr4](https://images.unsplash.com/photo-1570221622224-3bb8f08f166c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=400&q=80)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/darkghosthunter/laraconfig.svg)](https://packagist.org/packages/darkghosthunter/laraconfig) [![License](https://poser.pugx.org/darkghosthunter/laraconfig/license)](https://packagist.org/packages/darkghosthunter/laraconfig) ![](https://img.shields.io/packagist/php-v/darkghosthunter/laraconfig.svg) ![](https://github.com/DarkGhostHunter/Laraconfig/workflows/PHP%20Composer/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/DarkGhostHunter/Laraconfig/badge.svg?branch=master)](https://coveralls.io/github/DarkGhostHunter/Laraconfig?branch=master) [![Laravel Octane Compatible](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://github.com/laravel/octane)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mwakalingajohn/larasettings.svg)](https://packagist.org/packages/mwakalingajohn/larasettings) [![License](https://poser.pugx.org/mwakalingajohn/larasettings/license)](https://packagist.org/packages/mwakalingajohn/larasettings) ![](https://img.shields.io/packagist/php-v/mwakalingajohn/larasettings.svg) ![](https://github.com/MwakalingaJohn/LaraSettings/workflows/PHP%20Composer/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/MwakalingaJohn/LaraSettings/badge.svg?branch=master)](https://coveralls.io/github/MwakalingaJohn/LaraSettings?branch=master) [![Laravel Octane Compatible](https://img.shields.io/badge/Laravel%20Octane-Compatible-success?style=flat&logo=laravel)](https://github.com/laravel/octane)
 
-# Laraconfig
+# LaraSettings
 
 Per-user settings repository system for Laravel.
 
@@ -41,21 +41,21 @@ User::find(1)->settings->set('color', 'red');
 
 ## How it works
 
-Laraconfig works extending Laravel relations, and includes a migration system to easily manage them. 
+LaraSettings works extending Laravel relations, and includes a migration system to easily manage them. 
 
 Each Setting is just a value, and references a parent "metadata" that contains the information like the type and name, while being linked to a user.
 
-Since Laraconfig uses the Eloquent ORM behind the scenes, getting a one or all settings is totally transparent to the developer.
+Since LaraSettings uses the Eloquent ORM behind the scenes, getting a one or all settings is totally transparent to the developer.
 
 ## Quickstart
 
 You can install the package via composer.
 
-    composer require darkghosthunter/laraconfig
+    composer require mwakalingajohn/larasettings
 
 First, publish and run the migrations. These will add two tables called `user_settings` and `user_settings_metadata`. One holds the values per user, the other the metadata of the setting, respectively.
 
-    php artisan vendor:publish --provider="DarkGhostHunter\Laraconfig\LaraconfigServiceProvider" --tag="migrations"
+    php artisan vendor:publish --provider="MwakalingaJohn\LaraSettings\LaraSettingsServiceProvider" --tag="migrations"
     php artisan migrate
 
 > The migration uses a morph column to connect to the User. You can change it before migrating.
@@ -66,7 +66,7 @@ Second, add the `HasConfig` trait to the User models you want to have settings.
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 
 class User extends Authenticatable
 {
@@ -84,10 +84,10 @@ Now, let's create some settings.
 
 ## Settings Manifest
 
-Laraconfig makes managing user settings globally using a _manifest_ of sorts, the `settings/users.php` file. You will see a sample setting already written.
+LaraSettings makes managing user settings globally using a _manifest_ of sorts, the `settings/users.php` file. You will see a sample setting already written.
 
 ```php
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('color')->string();
 ```
@@ -97,12 +97,12 @@ Setting::name('color')->string();
 To create a setting, use the `Setting` facade. You can start with setting the name, which must be unique, and then declare the type.
 
 ```php
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('dark_mode')->boolean();
 ```
 
-Laraconfig is compatible with 7 types of settings, mirroring their PHP native types, along the Collection and Datetime (Carbon) objects. 
+LaraSettings is compatible with 7 types of settings, mirroring their PHP native types, along the Collection and Datetime (Carbon) objects. 
 
 * `array()`
 * `boolean()`
@@ -119,7 +119,7 @@ Laraconfig is compatible with 7 types of settings, mirroring their PHP native ty
 All settings have a default value of `null`, but you can use the `default()` method to set a different initial value.
 
 ```php
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('color')->string()->default('black');
 ```
@@ -146,7 +146,7 @@ Setting::name('color')->group('theme');
 
 ### Bag
 
-When Laraconfig migrates the new settings, these are created to all models. You can filter a given set of settings through "bags". 
+When LaraSettings migrates the new settings, these are created to all models. You can filter a given set of settings through "bags". 
 
 By default, all settings are created under the `users` bag, but you can change the default bag for anything using the `bag()` method.
 
@@ -161,20 +161,20 @@ Later, in your model, you can filter the bags you want to work with using [`filt
 
 ## Migrating settings
 
-Once you're done creating your settings, you should use `settings:migrate` to let Laraconfig add the settings metadata to your database.
+Once you're done creating your settings, you should use `settings:migrate` to let LaraSettings add the settings metadata to your database.
 
     php artisan settings:migrate
 
-Behind the scenes, Laraconfig will look into your Models for those using the `HasConfig` trait, and populate the settings accordingly using the information on the manifest.
+Behind the scenes, LaraSettings will look into your Models for those using the `HasConfig` trait, and populate the settings accordingly using the information on the manifest.
 
 > Migration run only _forward_. There is no way to revert a migration once done. On production, removing settings needs confirmation.
 
 ### Adding new settings
 
-Simply create a new setting and run `settings:migrate`. Existing settings won't be created again, as Laraconfig will check their existence before doing it.
+Simply create a new setting and run `settings:migrate`. Existing settings won't be created again, as LaraSettings will check their existence before doing it.
 
 ```php
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('color')->string()->default('black');
 
@@ -184,10 +184,10 @@ Setting::name('notifications')->boolean()->default(true);
 
 ### Removing old settings
 
-To remove old settings, simply remove their declaration and run `settings:migrate`. Laraconfig compares the settings declared to the ones created in the database, and removes those that no longer exist in the manifest at the end of the migration execution.
+To remove old settings, simply remove their declaration and run `settings:migrate`. LaraSettings compares the settings declared to the ones created in the database, and removes those that no longer exist in the manifest at the end of the migration execution.
 
 ```php
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 // Commenting this line will remove the "color" setting on migration.
 // Setting::name('color')->string()->default('black');
@@ -200,7 +200,7 @@ Setting::name('notifications')->boolean()->default(true);
 
 ### Upgrading settings
 
-You don't need to get directly into the database to update a setting. Instead, just change the setting properties directly in the manifest. Laraconfig will update the metadata accordingly.
+You don't need to get directly into the database to update a setting. Instead, just change the setting properties directly in the manifest. LaraSettings will update the metadata accordingly.
 
 Let's say we have a "color" setting we wish to update from a string to an array of colors, with a default and a group.
 
@@ -214,7 +214,7 @@ Setting::name('color')->string()->bag('theme');
 //    ->group('theme');
 ```
 
-Laraconfig will detect the new changes, and update the metadata keeping the users value intact.
+LaraSettings will detect the new changes, and update the metadata keeping the users value intact.
 
 ```php
 // This is the old declaration.
@@ -240,7 +240,7 @@ Setting::name('color')
 
 > The `using()` method only runs if the setting is different from before at migration time.
 
-Behind the scenes, Laraconfig will look for the "color" setting, update the metadata, and then use a [`lazy()` query](https://laravel.com/docs/queries#streaming-results-lazily) to update the value with the callback.
+Behind the scenes, LaraSettings will look for the "color" setting, update the metadata, and then use a [`lazy()` query](https://laravel.com/docs/queries#streaming-results-lazily) to update the value with the callback.
 
 > Consider migrating directly on the database if you have hundreds of thousands of records, as this procedure is safer but slower than a direct SQL statement.
 
@@ -265,11 +265,11 @@ Setting::name('dark')
 
 > The `from` and `using` are executed only if the old setting exists at migration time.
 
-Behind the scenes, Laraconfig creates the new "theme" setting first, and then looks for the old "color" setting in the database to translate the old values to the new ones. Since the old setting is not present in the manifest, it will be deleted from the database.
+Behind the scenes, LaraSettings creates the new "theme" setting first, and then looks for the old "color" setting in the database to translate the old values to the new ones. Since the old setting is not present in the manifest, it will be deleted from the database.
 
 ## Managing Settings
 
-Laraconfig handles settings like any [Eloquent Morph-Many Relationship](https://laravel.com/docs/eloquent-relationships#one-to-many-polymorphic-relations), but supercharged. 
+LaraSettings handles settings like any [Eloquent Morph-Many Relationship](https://laravel.com/docs/eloquent-relationships#one-to-many-polymorphic-relations), but supercharged. 
 
 Just simply use the `settings` property on your model. This property is like your normal [Eloquent Collection](https://laravel.com/docs/eloquent-collections), so you have access to all its tools.
 
@@ -449,7 +449,7 @@ $user->settings->disable('color');
 
 ## Setting Bags
 
-Laraconfig uses one single bag called `default`. If you have declared in the manifest [different sets of bags](#bag), you can make a model to use only a particular set of bags with the `filterBags()` method, that should return the bag name (or names).
+LaraSettings uses one single bag called `default`. If you have declared in the manifest [different sets of bags](#bag), you can make a model to use only a particular set of bags with the `filterBags()` method, that should return the bag name (or names).
 
 ```php
 // app/Models/User.php
@@ -462,12 +462,12 @@ The above will apply a filter to the query when retrieving settings from the dat
 
 #### Disabling the bag filter scope
 
-Laraconfig applies a query filter to exclude the settings not in the model bag. While this eases the development, sometimes you will want to work with the full set of settings available.
+LaraSettings applies a query filter to exclude the settings not in the model bag. While this eases the development, sometimes you will want to work with the full set of settings available.
 
 There are two ways to disable the bag filter. The first one is relatively easy: simply use the `withoutGlobalScope()` at query time, which will allow to query all the settings available to the user.
 
 ```php
-use DarkGhostHunter\Laraconfig\Eloquent\Scopes\FilterBags;
+use MwakalingaJohn\LaraSettings\Eloquent\Scopes\FilterBags;
 
 $allSettings = $user->settings()->withoutGlobalScope(FilterBags::class)->get();
 ```
@@ -494,14 +494,14 @@ The cache implementation avoids data-races. It will regenerate the cache only fo
 
 ### Enabling the cache
 
-You can easily enable the cache using the `LARACONFIG_CACHE` environment variable set to `true`, and use a non-default cache store (like Redis) with `LARACONFIG_STORE`.
+You can easily enable the cache using the `LARASETTINGS_CACHE` environment variable set to `true`, and use a non-default cache store (like Redis) with `LARASETTINGS_STORE`.
 
 ```dotenv
-LARACONFIG_CACHE=true
-LARACONFIG_STORE=redis
+LARASETTINGS_CACHE=true
+LARASETTINGS_STORE=redis
 ```
 
-> Alternatively, check the `laraconfig.php` file to customize the cache TTL and prefix.
+> Alternatively, check the `larasettings.php` file to customize the cache TTL and prefix.
 
 #### Managing the cache
 
@@ -529,11 +529,11 @@ $user->settings->regeneratesOnExit = true;
 
 If the [Cache is activated](#cache), the migration will invalidate the setting cache for each user after it completes.
 
-Depending on the Cache system, forgetting each cache key can be detrimental. Instead, you can use the `--flush-cache` command to flush the cache store used by Laraconfig, instead of deleting each key one by one.
+Depending on the Cache system, forgetting each cache key can be detrimental. Instead, you can use the `--flush-cache` command to flush the cache store used by LaraSettings, instead of deleting each key one by one.
 
     php artisan settings:migrate --flush-cache
 
-> Since this will delete all the data of the cache, is recommended to use an exclusive cache store for Laraconfig, like a separate Redis database.
+> Since this will delete all the data of the cache, is recommended to use an exclusive cache store for LaraSettings, like a separate Redis database.
 
 ## Validation
 
@@ -581,7 +581,7 @@ public function test_user_has_settings(): void
 
 ## Security
 
-If you discover any security related issues, please email darkghosthunter@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email mwakalingajohn@gmail.com instead of using the issue tracker.
 
 ## License
 

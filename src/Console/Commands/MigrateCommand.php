@@ -1,9 +1,9 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Console\Commands;
+namespace MwakalingaJohn\LaraSettings\Console\Commands;
 
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\Migrator\Migrator;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Migrator\Migrator;
 use Illuminate\Console\Command;
 use Illuminate\Console\OutputStyle;
 use RuntimeException;
@@ -21,7 +21,7 @@ class MigrateCommand extends Command
      */
     protected $signature = 'settings:migrate
                             {--refresh : Wipes clean the settings table and metadata table.}
-                            {--flush-cache : Flushes the cache used by Laraconfig, if enabled.}
+                            {--flush-cache : Flushes the cache used by LaraSettings, if enabled.}
                             {--force : Skips confirmation prompt on production.}';
 
     /**
@@ -34,8 +34,8 @@ class MigrateCommand extends Command
     /**
      * MigrateCommand constructor.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Migrator  $migrator
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Migrator  $migrator
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      */
     public function __construct(protected Migrator $migrator, protected Data $data)
     {

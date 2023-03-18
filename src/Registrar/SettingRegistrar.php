@@ -1,6 +1,6 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Registrar;
+namespace MwakalingaJohn\LaraSettings\Registrar;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
@@ -85,7 +85,7 @@ class SettingRegistrar
     /**
      * Returns a collection of declaration that migrates to another.
      *
-     * @return \Illuminate\Support\Collection|\DarkGhostHunter\Laraconfig\Registrar\Declaration[]
+     * @return \Illuminate\Support\Collection|\MwakalingaJohn\LaraSettings\Registrar\Declaration[]
      */
     public function getMigrable(): Collection
     {
@@ -98,11 +98,11 @@ class SettingRegistrar
      *
      * @param  string  $name
      *
-     * @return \DarkGhostHunter\Laraconfig\Registrar\Declaration
+     * @return \MwakalingaJohn\LaraSettings\Registrar\Declaration
      */
     public function name(string $name): Declaration
     {
-        $this->declarations->put($name, $declaration = new Declaration($name, $this->config->get('laraconfig.default')));
+        $this->declarations->put($name, $declaration = new Declaration($name, $this->config->get('larasettings.default')));
 
         return $declaration;
     }

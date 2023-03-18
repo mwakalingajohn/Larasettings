@@ -1,11 +1,11 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Laraconfig;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\MorphManySettings;
+use MwakalingaJohn\LaraSettings\LaraSettings;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\MorphManySettings;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Contracts\Config\Repository;
@@ -34,7 +34,7 @@ class InvalidateCache
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed
@@ -57,7 +57,7 @@ class InvalidateCache
     /**
      * Check if we should cycle through models to invalidate their keys.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      *
      * @return bool
      */
@@ -65,7 +65,7 @@ class InvalidateCache
     {
         return $data->invalidateCache
             && ! $this->input->getOption('flush-cache')
-            && $this->config->get('laraconfig.cache.enable');
+            && $this->config->get('larasettings.cache.enable');
     }
 
     /**
@@ -77,9 +77,9 @@ class InvalidateCache
      */
     protected function forgetModelCacheKeys(Data $data): int
     {
-        $store = $this->cache->store($this->config->get('laraconfig.cache.store'));
+        $store = $this->cache->store($this->config->get('larasettings.cache.store'));
 
-        $prefix = $this->config->get('laraconfig.cache.prefix');
+        $prefix = $this->config->get('larasettings.cache.prefix');
 
         $count = 0;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\Registrar\Declaration;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Registrar\Declaration;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Collection;
 
@@ -27,7 +27,7 @@ class UpdateExistingMetadata
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed
@@ -55,9 +55,9 @@ class UpdateExistingMetadata
     /**
      * Returns a collection of metadata that is already present in the.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      *
-     * @return \Illuminate\Support\Collection|\DarkGhostHunter\Laraconfig\Registrar\Declaration[]
+     * @return \Illuminate\Support\Collection|\MwakalingaJohn\LaraSettings\Registrar\Declaration[]
      */
     protected function getUpdatableMetadata(Data $data): Collection
     {
@@ -65,7 +65,7 @@ class UpdateExistingMetadata
         // equal to them. If it doesn't exists, it must be created, and if it's equal
         // to the original metadata, no changes should be made to it.
         return $data->declarations->filter(static function (Declaration $declaration) use ($data): bool {
-            /** @var \DarkGhostHunter\Laraconfig\Eloquent\Metadata $metadata */
+            /** @var \MwakalingaJohn\LaraSettings\Eloquent\Metadata $metadata */
             if ($metadata = $data->metadata->get($declaration->name)) {
                 $placeholder = $declaration->toMetadata();
 
@@ -80,14 +80,14 @@ class UpdateExistingMetadata
     /**
      * Updates each existing metadata from its declaration of the same name.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\Declaration  $declaration
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\Declaration  $declaration
      *
      * @return int
      */
     protected function updateMetadata(Data $data, Declaration $declaration): int
     {
-        /** @var \DarkGhostHunter\Laraconfig\Eloquent\Metadata $metadata */
+        /** @var \MwakalingaJohn\LaraSettings\Eloquent\Metadata $metadata */
         $metadata = $data->metadata->get($declaration->name);
 
         $metadata->forceFill([
@@ -113,8 +113,8 @@ class UpdateExistingMetadata
     /**
      * Update each child setting (of each user) using the declaration procedure.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\Declaration  $declaration
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $metadata
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\Declaration  $declaration
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $metadata
      *
      * @return int
      */

@@ -1,12 +1,12 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\Registrar\Declaration;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Registrar\Declaration;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -30,7 +30,7 @@ class CreateNewMetadata
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed
@@ -66,9 +66,9 @@ class CreateNewMetadata
     /**
      * Creates the metadata from the declaration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\Declaration  $declaration
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\Declaration  $declaration
      *
-     * @return \DarkGhostHunter\Laraconfig\Eloquent\Metadata
+     * @return \MwakalingaJohn\LaraSettings\Eloquent\Metadata
      */
     protected function createMetadata(Declaration $declaration): Metadata
     {
@@ -78,7 +78,7 @@ class CreateNewMetadata
     /**
      * Returns a collection of declarations that don't exist in the database.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      *
      * @return \Illuminate\Support\Collection
      */
@@ -92,10 +92,10 @@ class CreateNewMetadata
     /**
      * Fill the settings of the newly created Metadata.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\Declaration  $declaration
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $metadata
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\Declaration  $declaration
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $metadata
      * @param  \Illuminate\Support\Collection  $models
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      *
      * @return int
      */
@@ -131,7 +131,7 @@ class CreateNewMetadata
     /**
      * Fill the settings for each of the models using settings.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $metadata
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $metadata
      * @param  \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model[]  $models
      *
      * @return int
@@ -164,8 +164,8 @@ class CreateNewMetadata
     /**
      * Copy the settings for each of the models from the old setting.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $new
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $old
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $new
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $old
      *
      * @return int
      */
@@ -190,9 +190,9 @@ class CreateNewMetadata
     /**
      * Feeds each old setting to a procedure that saves the new setting value.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Registrar\Declaration  $declaration
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $new
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $old
+     * @param  \MwakalingaJohn\LaraSettings\Registrar\Declaration  $declaration
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $new
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $old
      *
      * @return int
      */
@@ -200,7 +200,7 @@ class CreateNewMetadata
     {
         $affected = 0;
 
-        /** @var \DarkGhostHunter\Laraconfig\Eloquent\Setting $setting */
+        /** @var \MwakalingaJohn\LaraSettings\Eloquent\Setting $setting */
         foreach (Setting::query()->where('metadata_id', $old->getKey())->lazyById() as $setting) {
             Setting::query()
                 ->insert([

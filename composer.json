@@ -1,6 +1,6 @@
 {
   "name": "mwakalingajohn/larasettings",
-  "description": "Per-user settings repository system for Laravel forked from ricventu/laraconfig",
+  "description": "Per-user settings repository system for Laravel forked from ricventu/larasettings",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "license": "MIT",
@@ -37,7 +37,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "MwakalingaJohn\\LaraSettings\\LaraconfigServiceProvider"
+        "MwakalingaJohn\\LaraSettings\\LaraSettingsServiceProvider"
       ],
       "aliases": {
         "Setting": "MwakalingaJohn\\LaraSettings\\Facades\\Setting"

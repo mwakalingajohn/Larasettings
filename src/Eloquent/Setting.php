@@ -1,9 +1,9 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Eloquent;
+namespace MwakalingaJohn\LaraSettings\Eloquent;
 
-use DarkGhostHunter\Laraconfig\MorphManySettings;
-use DarkGhostHunter\Laraconfig\SettingsCache;
+use MwakalingaJohn\LaraSettings\MorphManySettings;
+use MwakalingaJohn\LaraSettings\SettingsCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read string $group // Added by the "add-metadata" global scope.
  * @property-read string $bag // Added by the "add-metadata" global scope.
  *
- * @property-read \DarkGhostHunter\Laraconfig\Eloquent\Metadata $metadata
+ * @property-read \MwakalingaJohn\LaraSettings\Eloquent\Metadata $metadata
  */
 class Setting extends Model
 {
@@ -68,7 +68,7 @@ class Setting extends Model
     /**
      * Settings cache repository.
      *
-     * @var \DarkGhostHunter\Laraconfig\SettingsCache|null
+     * @var \MwakalingaJohn\LaraSettings\SettingsCache|null
      */
     public ?SettingsCache $cache = null;
 
@@ -122,7 +122,7 @@ class Setting extends Model
     /**
      * Fills the settings data from a Metadata model instance.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Eloquent\Metadata  $metadata
+     * @param  \MwakalingaJohn\LaraSettings\Eloquent\Metadata  $metadata
      *
      * @return $this
      */
@@ -236,14 +236,14 @@ class Setting extends Model
             $this->cache->invalidateIfNotInvalidated();
             // Mark the cache to be regenerated once is destructed.
             $this->cache->regenerateOnExit();
-        } elseif (config('laraconfig.cache.enable', false)) {
+        } elseif (config('larasettings.cache.enable', false)) {
             [$morph, $id] = $this->getMorphs('settable', null, null);
 
             cache()
-                ->store(config('laraconfig.cache.store'))
+                ->store(config('larasettings.cache.store'))
                 ->forget(
                     MorphManySettings::generateKeyForModel(
-                        config('laraconfig.cache.prefix'),
+                        config('larasettings.cache.prefix'),
                         $this->getAttribute($morph),
                         $this->getAttribute($id)
                     )

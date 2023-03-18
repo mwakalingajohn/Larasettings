@@ -1,9 +1,9 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator\Pipes;
+namespace MwakalingaJohn\LaraSettings\Migrator\Pipes;
 
 use Closure;
-use DarkGhostHunter\Laraconfig\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Contracts\Config\Repository;
@@ -37,7 +37,7 @@ class FlushCache
     /**
      * Handles the Settings migration.
      *
-     * @param  \DarkGhostHunter\Laraconfig\Migrator\Data  $data
+     * @param  \MwakalingaJohn\LaraSettings\Migrator\Data  $data
      * @param  \Closure  $next
      *
      * @return mixed
@@ -46,11 +46,11 @@ class FlushCache
     {
         if ($this->input->getOption('flush-cache')) {
             // If is not using a cache, we will not flush anything and bail.
-            if (!$this->config->get('laraconfig.cache.enable', false)) {
-                throw new RuntimeException('Cannot flush cache. Laraconfig cache is not enabled.');
+            if (!$this->config->get('larasettings.cache.enable', false)) {
+                throw new RuntimeException('Cannot flush cache. LaraSettings cache is not enabled.');
             }
 
-            $store = $this->config->get('laraconfig.cache.store');
+            $store = $this->config->get('larasettings.cache.store');
 
             // We will prompt the user if needed, and wait for its confirmation.
             if ($this->shouldPrompt() && !$this->confirms($store)) {

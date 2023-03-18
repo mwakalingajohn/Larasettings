@@ -27,10 +27,10 @@ return [
     */
 
     'cache' => [
-        'enable' => env('LARACONFIG_CACHE', false),
-        'store' => env('LARACONFIG_STORE'),
+        'enable' => env('LARASETTINGS_CACHE', false),
+        'store' => env('LARASETTINGS_STORE'),
         'duration' => 60 * 60 * 3, // Store the settings for 3 hours
-        'prefix' => 'laraconfig',
+        'prefix' => 'larasettings',
         'automatic' => true, // Regenerate the cache before garbage collection.
     ]
 ];

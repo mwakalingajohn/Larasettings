@@ -1,6 +1,6 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Migrator;
+namespace MwakalingaJohn\LaraSettings\Migrator;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
@@ -13,14 +13,14 @@ class Data
     /**
      * Database Metadata.
      *
-     * @var \Illuminate\Database\Eloquent\Collection|\DarkGhostHunter\Laraconfig\Eloquent\Metadata[]
+     * @var \Illuminate\Database\Eloquent\Collection|\MwakalingaJohn\LaraSettings\Eloquent\Metadata[]
      */
     public EloquentCollection $metadata;
 
     /**
      * Declarations.
      *
-     * @var \Illuminate\Support\Collection|\DarkGhostHunter\Laraconfig\Registrar\Declaration[]
+     * @var \Illuminate\Support\Collection|\MwakalingaJohn\LaraSettings\Registrar\Declaration[]
      */
     public Collection $declarations;
 

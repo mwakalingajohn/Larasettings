@@ -1,6 +1,6 @@
 <?php
 
-namespace DarkGhostHunter\Laraconfig\Eloquent;
+namespace MwakalingaJohn\LaraSettings\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Support\Carbon $updated_at
  * @property-read \Illuminate\Support\Carbon $created_at
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\DarkGhostHunter\Laraconfig\Eloquent\Setting[] $settings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\MwakalingaJohn\LaraSettings\Eloquent\Setting[] $settings
  *
  * @internal
  */
@@ -53,7 +53,7 @@ class Metadata extends Model
     /**
      * The settings this metadata has.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\DarkGhostHunter\Laraconfig\Eloquent\Setting
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\MwakalingaJohn\LaraSettings\Eloquent\Setting
      */
     public function settings(): HasMany
     {
