@@ -2,10 +2,10 @@
 
 namespace Tests\Eloquent\Scopes;
 
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Scopes\AddMetadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Scopes\AddMetadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\HasConfig;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;

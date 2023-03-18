@@ -1,6 +1,6 @@
 <?php
 
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('foo')->default('foo_default');
 

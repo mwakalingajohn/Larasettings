@@ -2,10 +2,10 @@
 
 namespace Tests\Eloquent\Models;
 
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Scopes\AddMetadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
-use DarkGhostHunter\Laraconfig\SettingsCache;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Scopes\AddMetadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\SettingsCache;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -52,7 +52,7 @@ class SettingTest extends BaseTestCase
 
     public function test_adds_metadata(): void
     {
-        /** @var \DarkGhostHunter\Laraconfig\Eloquent\Setting $setting */
+        /** @var \MwakalingaJohn\LaraSettings\Eloquent\Setting $setting */
         $setting = Setting::make()
             ->setRawAttributes(['value' => 'quz'])
             ->forceFill([

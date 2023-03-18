@@ -1,6 +1,6 @@
 <?php
 
-use DarkGhostHunter\Laraconfig\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
 
 Setting::name('color')->default('red');
 

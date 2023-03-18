@@ -2,7 +2,7 @@
 
 namespace Tests\Dummies;
 
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 use Illuminate\Database\Eloquent\Model;
 
 /**

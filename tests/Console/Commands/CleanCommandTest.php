@@ -2,8 +2,8 @@
 
 namespace Tests\Console\Commands;
 
-use DarkGhostHunter\Laraconfig\Eloquent\Metadata;
-use DarkGhostHunter\Laraconfig\Eloquent\Setting;
+use MwakalingaJohn\LaraSettings\Eloquent\Metadata;
+use MwakalingaJohn\LaraSettings\Eloquent\Setting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\BaseTestCase;

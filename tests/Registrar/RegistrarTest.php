@@ -2,8 +2,8 @@
 
 namespace Tests\Registrar;
 
-use DarkGhostHunter\Laraconfig\Facades\Setting;
-use DarkGhostHunter\Laraconfig\Registrar\SettingRegistrar;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
+use MwakalingaJohn\LaraSettings\Registrar\SettingRegistrar;
 use Illuminate\Support\Collection;
 use Tests\BaseTestCase;
 

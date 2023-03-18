@@ -2,8 +2,8 @@
 
 namespace Tests\Migrator\Pipes;
 
-use DarkGhostHunter\Laraconfig\Migrator\Data;
-use DarkGhostHunter\Laraconfig\Migrator\Pipes\FindModelsWithSettings;
+use MwakalingaJohn\LaraSettings\Migrator\Data;
+use MwakalingaJohn\LaraSettings\Migrator\Pipes\FindModelsWithSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
@@ -28,7 +28,7 @@ class FindModelsWithSettingsTest extends BaseTestCase
 
 namespace App;
 
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 use Illuminate\Database\Eloquent\Model;
 
 class Quz extends Model
@@ -56,7 +56,7 @@ CONTENT
 
 namespace App;
 
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 
 trait TraitOfTrait
 {
@@ -133,7 +133,7 @@ CONTENT
 
 namespace App\Models;
 
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 use Illuminate\Database\Eloquent\Model;
 
 class Foo extends Model
@@ -172,7 +172,7 @@ CONTENT
 
 namespace App;
 
-use DarkGhostHunter\Laraconfig\HasConfig;
+use MwakalingaJohn\LaraSettings\HasConfig;
 
 class NormalClass
 {
