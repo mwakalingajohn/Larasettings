@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use DarkGhostHunter\Laraconfig\Facades\Setting;
-use DarkGhostHunter\Laraconfig\LaraconfigServiceProvider;
-use DarkGhostHunter\Laraconfig\Registrar\SettingRegistrar;
+use MwakalingaJohn\LaraSettings\Facades\Setting;
+use MwakalingaJohn\LaraSettings\LarasettingsServiceProvider;
+use MwakalingaJohn\LaraSettings\Registrar\SettingRegistrar;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use SplFileInfo;
@@ -23,7 +23,7 @@ class ServiceProviderTest extends BaseTestCase
 
     public function test_registers_package(): void
     {
-        static::assertArrayHasKey(LaraconfigServiceProvider::class, $this->app->getLoadedProviders());
+        static::assertArrayHasKey(LarasettingsServiceProvider::class, $this->app->getLoadedProviders());
     }
 
     public function test_facades(): void
@@ -33,7 +33,7 @@ class ServiceProviderTest extends BaseTestCase
 
     public function test_uses_config(): void
     {
-        static::assertEquals(include(__DIR__.'/../config/laraconfig.php'), config('laraconfig'));
+        static::assertEquals(include(__DIR__.'/../config/larasettings.php'), config('larasettings'));
     }
 
     public function test_publishes_config(): void
@@ -41,12 +41,12 @@ class ServiceProviderTest extends BaseTestCase
         $this->artisan(
             'vendor:publish',
             [
-                '--provider' => 'DarkGhostHunter\Laraconfig\LaraconfigServiceProvider',
+                '--provider' => 'MwakalingaJohn\LaraSettings\LarasettingsServiceProvider',
                 '--tag' => 'config',
             ]
         )->execute();
 
-        static::assertFileEquals(base_path('config/laraconfig.php'), __DIR__ . '/../config/laraconfig.php');
+        static::assertFileEquals(base_path('config/larasettings.php'), __DIR__ . '/../config/larasettings.php');
     }
 
     public function test_publishes_migrations(): void
@@ -56,7 +56,7 @@ class ServiceProviderTest extends BaseTestCase
         $this->artisan(
             'vendor:publish',
             [
-                '--provider' => 'DarkGhostHunter\Laraconfig\LaraconfigServiceProvider',
+                '--provider' => 'MwakalingaJohn\LaraSettings\LarasettingsServiceProvider',
                 '--tag' => 'migrations',
             ]
         )->run();
@@ -78,7 +78,7 @@ class ServiceProviderTest extends BaseTestCase
 
     protected function tearDown(): void
     {
-        $this->filesystem->delete(base_path('config/laraconfig.php'));
+        $this->filesystem->delete(base_path('config/larasettings.php'));
         $this->filesystem->cleanDirectory(database_path('migrations'));
 
         parent::tearDown();
